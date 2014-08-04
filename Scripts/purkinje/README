@@ -1,4 +1,4 @@
-$ProjectVersion: Release2-2.11 $
+$ProjectVersion: Release2-2.17 $
 
 README file for the Tutorial simulation of a cerebellar Purkinje cell
 
@@ -11,8 +11,8 @@ tutorial is based upon a GENESIS simulation of a cerebellar Purkinje
 cell, modeled and fine-tuned by Erik de Schutter. The tutorial assumes
 that you have a basic knowledge of the Purkinje cell and its synaptic
 inputs. It gives visual insights in how different properties as
-concentrations and channel conductances vary and interact within a
-real Purkinje cell.
+concentrations and channel conductances vary and interact in a real
+Purkinje cell.
 
 
 RUNNING
@@ -41,7 +41,8 @@ To explore the tutorial, do the following :
    you do not have write permission, copy the tutorial files to a directory
    in which you are allowed to create files.
 
-3) Type at the shell prompt : "genesis TUTORIAL".
+3) Type at the shell prompt : "genesis TUTORIAL.g"
+   or "genesis TUTORIAL_excitation_demo.g"
 
 
 LIBRARY
@@ -71,11 +72,12 @@ Note that the mechanism for selecting the cell and the compartmental
 prototypes is subject to change.
 
 
-For feedback write:
-Concepts and documentation: Erik de Schutter - erik@tnb.ua.ac.be
-Bugs:                       Hugo Cornelis - hugo.cornelis@gmail.com
+For feedback write: Hugo Cornelis - hugo.cornelis@gmail.com
 
 Copyright for the first  version of these scripts: Born-Bunge Foundation - UA 1998-2002.
 Copyright for the second version of these scripts: UTHSCSA - University of Texas system 2005-2006
+
+This code is GPL.  You are free to modify this code as you like, and
+distribute the modified code.  See license.txt for more information.
 
 

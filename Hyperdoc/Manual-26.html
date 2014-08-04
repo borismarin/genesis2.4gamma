@@ -1,6 +1,6 @@
 <HTML>
 <HEAD>
-<TITLE>GENESIS Reference ManualMay 5, 2001: GENESIS Object Reference</TITLE>
+<TITLE>GENESIS Reference Manual: GENESIS Object Reference</TITLE>
 </HEAD>
 <BODY>
 <A HREF="Manual-25.html">Previous</A>
@@ -7078,7 +7078,7 @@ Fields:
                 thresh          threshold level for spike generation
                 abs_refract     minimum interval between spikes
                 output_amp      spike event amplitude
-
+                lastevent       time of last generated spike
 ------------------------------------------------------------------------------
 
 SIMULATION PARAMETERS
@@ -7241,7 +7241,67 @@ See also:
 <A HREF="#asc_file">asc_file </a>, 
 <A HREF="#spikegen">spikegen </a></P>
 
+<H2><A NAME="stdp_rules"></A> <A NAME="ss26.57.1">26.57.1 stdp_rules</A></H2>
 
+<P>
+<PRE>
+Object Type:	stdp_rules
+
+Description:	Performs a weight modification of synchan connections,
+                according to spike timing dependent (STDP) rules and
+		settable parameters.  Works with hsolved cells.
+
+Author:		Dave Beeman, University of Colorado, June 2014
+
+------------------------------------------------------------------------------
+
+ELEMENT PARAMETERS
+
+DataStructure:	stdp_rules_type [in src/newconn/stdp_rules_struct.h]
+
+Size:		208 bytes
+
+Fields:
+             synpath         relative path to synchan to be modified
+             spikepath       relative path to the cell spikegen
+             tau_pre         decay constant for pre before post spike
+             tau_post        decay constant for post before pre spike
+             min_dt          minimum time diff to account for latency
+             max_weight      maximum synaptic weight allowed
+             min_weight      minimum synaptic weight allowed
+             dAplus          increment for postive weight changes
+             dAminus         increment for negative weight changes
+             change_weights  flag: 0 = plasticity off, otherwise on
+             debug_level     flag: 0 = no messages, 1 = some messages, 2 = more
+             celllist         GENESIS ElementList of cells to modify
+
+
+------------------------------------------------------------------------------
+
+SIMULATION PARAMETERS
+
+Function:   StdpRules [in src/newconn/stdp_rules.c]
+
+Class:		output
+
+Actions:	CHECK  RESET  PROCESS  INIT  CREATE
+
+Messages:	None
+
+------------------------------------------------------------------------------
+
+Notes: A clocked object to modify synaptic weights for all synapses of
+       a specified (wildcarded) cell and synchan, e.g. '/layer4/pyr[]'
+       and 'apical3/AMPA'.  The spike timing dependent plasticity
+       (STDP) rules algorithm is from Song, Miller, and Abbott (2000).
+
+Example:  Scripts/stdp_rules/README.txt
+
+</PRE>
+See also:       
+<A HREF="#synchan">synchan </a>, 
+<A HREF="#spikegen">spikegen </a>
+<P>
 <H2><A NAME="symcompartment"></A> <A NAME="ss26.58">26.58 symcompartment</A></H2>
 
 <P>
@@ -7407,22 +7467,25 @@ DataStructure:  Synchan_type  [in src/newconn/newconn_struct.h]
  
 Size:           200 bytes
  
-Fields:         activation         driving force (transmitter) for channel
+Fields: activation         driving force (transmitter) for channel
                                    conductance
-                Ik                 channel current
-                Gk                 time varying channel conductance
-                Ek                 reversal potential of channel
-                tau1               first time constant of channel activation
-                tau2               second time constant of channel activation
-                gmax               peak channel conductance
-                frequency          random activation frequency (default = 0)
-                nsynapses          number of incoming spike messages (readonly)
-                event_buffer_size  size of event buffer (readonly)
-                pending_events     number of pending spike events in event 
-                                   buffer (readonly)
-                nodes_per_synapse  number of event nodes to allocate per 
-                                   synapse (default 1)
-                synapse            synapse buffer
+        Ik                 channel current
+        Gk                 time varying channel conductance
+        Ek                 reversal potential of channel
+        tau1               first time constant of channel activation
+        tau2               second time constant of channel activation
+        gmax               peak channel conductance
+        frequency          random activation frequency (default = 0)
+        nsynapses          number of incoming spike messages (readonly)
+	time_last_event    arrival time (including delay) of last spike (readonly)
+	Aplus              unused field available to store positive weight changes
+	Aminus             unused field available to store negative weight changes
+        event_buffer_size  size of event buffer (readonly)
+        pending_events     number of pending spike events in event 
+                           buffer (readonly)
+        nodes_per_synapse  number of event nodes to allocate per 
+                           synapse (default 1)
+        synapse            synapse buffer
 
 ------------------------------------------------------------------------------
 
@@ -7568,14 +7631,43 @@ Notes:          Simulates a time dependent synaptically activated ionic
                 synchan and renamed synchan2 to be synchan.  &quot;synchan2&quot; is
                 now just an alias for synchan -- they are identical.
 
-Example:        (Using Scripts/tutorials/tutorial4.g)
+	Additions for GENESIS 2.4:
 
-                genesis &gt; showfield /cell/dend/Ex_channel synapse[1].weight
-                [ /cell/dend/Ex_channel ]
-                synapse[1].weight    = 10
+	The individual synapse substructures of the synchan now have
+	four additional fields that can be used to implement synaptic
+	plasticity in hsolved synchans.
 
-                genesis &gt; echo {getfield /cell/dend/Ex_channel synapse[1].delay}
-                0.004999999888
+	'last_spike_time' records the arrival time (including delay) of the
+	last presynaptic spike. It can be used along with the
+	'lastevent' field of the cell spikegen to determine the times
+	of presynaptic and postsynaptic spikes.  It is set to -1 on
+	RESET.
+
+	The settable fields 'Aplus' and 'Aminus' are set to 0.0 on
+	RESET. Otherwise, they are not used by the synchan. They are
+	available to store positive and negative weight when synaptic
+	plasticity rules are applied with an external function or
+	object, such as the stdp_rules object. Likewise, 'lastupdate'
+	is not directly used by the synchan, except to set it to -1 on
+	RESET. It is used by plasticity objects such as stdp_rules to
+	keep track of when the synapse weight, Aplus, and Aminus
+	fields were last updated.
+
+
+Example: (Using Scripts/tutorials/tutorial4.g)
+
+         genesis &gt; showfield /cell/dend/Ex_channel synapse[1].weight
+         [ /cell/dend/Ex_channel ]
+         synapse[1].weight    = 10
+
+        genesis &gt; echo {getfield /cell/dend/Ex_channel synapse[1].delay}
+        0.004999999888
+
+        genesis >  showfield /cell/soma/Ex_channel synapse[0].last_spike_time
+
+	[ /cell/soma/Ex_channel ]
+	synapse[0].last_spike_time = 99.92880249
+
 </PRE>
 
 See also: 
@@ -7587,7 +7679,11 @@ See also:
 <A HREF="Manual-25.html#getsyncount">getsyncount </a>, 
 <A HREF="Manual-25.html#getsynindex">getsynindex </a>,
 <A HREF="Manual-25.html#getsynsrc">getsynsrc </a>, 
-<A HREF="Manual-25.html#getsyndest">getsyndest </a></P>
+<A HREF="Manual-25.html#getsyndest">getsyndest </a>,
+<A HREF="Manual-21.html#ss21.4">New Synaptic Plasticity Objects</A>,
+<A HREF="Manual-26.html#stdp_rules">stdp_rules </A>
+
+</P>
 
 
 

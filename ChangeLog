@@ -1,13 +1,37 @@
                              G E N E S I S
                 Summary of changes and revision history
                 ***************************************
-                Last edited: $Date: 2006/03/17 17:00:08 $
- 
+                Last edited: $Date: 2014-01-10 12:26:20 $
+
 Each set of changes listed below is prefaced with the version number for
 which the changes apply.  For development releases, two version numbers
 are listed on separate lines, the first being the development release
 version and the second being the proposed public release version.  The
 proposed release is subject to discussion and change.
+
+
+------------------------------------------
+BETA RELEASE 2.4 beta
+2014-July
+------------------------------------------
+
+- addition of 'stdp_rules' object, documentation, and Scripts for implementing
+  spike timing dependent plasticity in networks of hsolved cells
+
+- the chemesis library for modeling second messengers and calcium dynamics
+  has been added to GENESIS
+
+
+- new src/Makefile.dist includes chemesis, and has updated compilation flags
+ for modern versions of Linux.
+
+- fix added to src/sim/sim_notes.c to prevent compilation errors
+
+- new tutorial Scripts were added for chemesis, gpython-tools,
+  purkinje, stdp_rules, VAnet2
+
+- removed inline declarations from facsynchan and stdp_rules, and fixes to
+  netcdf to allow   compilation with Mac OS X
 
 ------------------------------------------
 FINAL RELEASE 2.3
@@ -26,10 +50,10 @@ text documentation is included under Doc only.
 -Update of the new purkinje cell tutorial to allow graphing of multiple data
 streams.
 
--Documentation has been revised for BoG.txt, Changes.txt, asc_file.txt, and 
+-Documentation has been revised for BoG.txt, Changes.txt, asc_file.txt, and
 Objects.txt, tabchannel.txt, README.cygwin.
 
--Some files were moved and Makefile.dist updated to facilitate creating src and
+- Some files were moved and Makefile.dist updated to facilitate creating src and
 binary distributions with minimal impact on the existing directory hierarchy.
 
 
@@ -1539,8 +1563,4 @@ BETA 2.0
 	  StaticGrey visual.  The xdpyinfo command is useful in finding
 	  out what types of visuals your X-Windows system supports.
 
-
-;;; Local Variables:
-;;; fill-column:72
-;;; End:
 
