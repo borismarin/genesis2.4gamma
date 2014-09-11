@@ -29,7 +29,14 @@
 *.hex
 
 # ac
-*.log
+src/autom4te.cache
+src/aclocal.m4
+src/compile
+src/depcomp
+src/install-sh
+src/missing
+src/stamp-h1
+src/config.log
 
 # editor mess
 *~
