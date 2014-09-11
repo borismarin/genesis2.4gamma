@@ -1,0 +1,89 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:1020: cc -c -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG conftest.c 1>&5
+configure:2084: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lc  -lfl -lm 1>&5
+configure:2076:6: warning: conflicting types for built-in function 'tanh' [enabled by default]
+ char tanh();
+      ^
+configure:2213: cpp -P -DNDEBUG conftest.c >/dev/null 2>conftest.out
+configure:2247: cpp -P -DNDEBUG conftest.c >/dev/null 2>conftest.out
+configure:2297: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure:2331: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure:2398: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+/tmp/ccFrDI76.o: In function `main':
+conftest.c:(.text.startup+0x21): warning: the use of `tmpnam' is dangerous, better use `mkstemp'
+configure:2428: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure:2476: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure:2644: cc -c -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG conftest.c 1>&5
+configure:2702: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure:2731: cpp -P -DNDEBUG conftest.c >/dev/null 2>conftest.out
+configure:2796: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure: In function 'main':
+configure:2791:67: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+ if (XOR (islower (i), ISLOWER (i)) || toupper (i) != TOUPPER (i)) exit(2);
+                                                                   ^
+configure:3014: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure: In function 'main':
+configure:3010:26: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+   volatile char c = 255; exit(c < 0);
+                          ^
+configure:3052: cc -c -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG conftest.c 1>&5
+configure:3068: cc -c -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG conftest.c 1>&5
+configure: In function 't':
+configure:3063:2: error: unknown type name 'not'
+  not big endian
+  ^
+configure:3063:10: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'endian'
+  not big endian
+          ^
+configure:3136: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure: In function 'main':
+configure:3130:11: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+   if (!f) exit(1);
+           ^
+configure:3131:3: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+   fprintf(f, "%d\n", sizeof(short));
+   ^
+configure:3170: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure: In function 'main':
+configure:3164:11: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+   if (!f) exit(1);
+           ^
+configure:3165:3: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+   fprintf(f, "%d\n", sizeof(int));
+   ^
+configure:3204: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure: In function 'main':
+configure:3198:11: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+   if (!f) exit(1);
+           ^
+configure:3199:3: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+   fprintf(f, "%d\n", sizeof(long));
+   ^
+configure:3238: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure: In function 'main':
+configure:3232:11: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+   if (!f) exit(1);
+           ^
+configure:3233:3: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+   fprintf(f, "%d\n", sizeof(float));
+   ^
+configure:3272: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure: In function 'main':
+configure:3266:11: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+   if (!f) exit(1);
+           ^
+configure:3267:3: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+   fprintf(f, "%d\n", sizeof(double));
+   ^
+configure:3310: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure: In function 'main':
+configure:3305:3: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+   fprintf(f, "%d\n", sizeof(off_t));
+   ^
+configure:3348: cc -o conftest -O2 -D__NO_MATH_INLINES -Dnetcdf -DFMT1 -DINCSPRNG -DNDEBUG  conftest.c -lfl -lm 1>&5
+configure: In function 'main':
+configure:3343:3: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+   fprintf(f, "%d\n", sizeof(size_t));
+   ^
