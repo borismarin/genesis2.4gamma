@@ -13,7 +13,7 @@ static char rcsid[] = "$Id: sim_base.c,v 1.4 2005/07/01 10:03:08 svitak Exp $";
 ** checked in in this batch).
 **
 ** Revision 1.2  2005/06/18 19:20:03  svitak
-** Added MacOSXDarwin to list of arcitectures requiring a.out.h.
+** Added Darwin to list of arcitectures requiring a.out.h.
 **
 ** Revision 1.1.1.1  2005/06/14 04:38:28  svitak
 ** Import from snapshot of CalTech CVS tree of June 8, 2005
@@ -61,7 +61,7 @@ static char rcsid[] = "$Id: sim_base.c,v 1.4 2005/07/01 10:03:08 svitak Exp $";
 #include <signal.h>
 #include <sys/types.h>
 #include <unistd.h>
-#if !defined(Solaris) && !defined(hpux) && !defined(MacOSXDarwin)
+#if !defined(Solaris) && !defined(hpux) && !defined(Darwin)
 #include <a.out.h>
 #endif
 #include "sim_ext.h"
