@@ -88,11 +88,11 @@ DISKIOFLAGS  = $(NETCDFFLAGS) \
 # more information.  NOTE: *only* uncomment the netCDF definitions below
 # if diskio support is included above.
 
-NETCDFSUBDIR = netcdf
-NETCDFOBJ = \
-	$(DISKIODIR)/interface/$(NETCDFSUBDIR)/netcdflib.o \
-	$(DISKIODIR)/interface/$(NETCDFSUBDIR)/netcdf-3.4/src/libsrc/libnetcdf.a
-NETCDFFLAGS = -Dnetcdf
+#NETCDFSUBDIR = netcdf
+#NETCDFOBJ = \
+#	$(DISKIODIR)/interface/$(NETCDFSUBDIR)/netcdflib.o \
+#	$(DISKIODIR)/interface/$(NETCDFSUBDIR)/netcdf-3.4/src/libsrc/libnetcdf.a
+#NETCDFFLAGS = -Dnetcdf
 
 #
 # oldconn --- GENESIS 1.4 network connection compatibility library
