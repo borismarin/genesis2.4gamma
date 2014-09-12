@@ -29,7 +29,7 @@
 *.hex
 
 # ac
-src/autom4te.cache
+*autom4te.cache
 src/aclocal.m4
 src/compile
 src/depcomp
@@ -37,6 +37,7 @@ src/install-sh
 src/missing
 src/stamp-h1
 src/config.log
+src/Makefile
 
 # editor mess
 *~
