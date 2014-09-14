@@ -19,7 +19,9 @@ LEX=@LEX@
 LEXLIB=@LEXLIB@
 LIBS=$(LEXLIB) -lm @X_PRE_LIBS@
 XINCLUDE=-I@X_INC@
-XLIB=-L@X_LIB@
+ifneq (@X_LIB@,)
+	XLINKPATH=-L@X_LIB@
+endif
 
 TERMCAP=-lncurses
 TERMOPT=-DTERMIO -DDONT_USE_SIGIO
@@ -154,9 +156,7 @@ INSTALLBIN     = $(INSTALLDIR)/bin
 # X11 libraries
 #
 
-XLIBS =	-L$(XLIB) \
-		-lXt \
-		-lX11
+XLIBS =	$(XLINKPATH) -lXt -lX11
 
 RCSRELEASE =	DR2-2-P1
 MF = 		Makefile.BASE
