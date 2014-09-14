@@ -159,7 +159,7 @@ XLIBS =	-L$(XLIB) \
 		-lX11
 
 RCSRELEASE =	DR2-2-P1
-MF = 		Makefile.minimal
+MF = 		Makefile.BASE
 SHELL = 	/bin/sh
 
 SIMLIB	=	../lib
