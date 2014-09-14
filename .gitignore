@@ -44,4 +44,5 @@ src/Makefile
 
 # genesis mess
 src/liblist
+**/*@.*
 
