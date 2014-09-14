@@ -41,3 +41,7 @@ src/Makefile
 
 # editor mess
 *~
+
+# genesis mess
+src/liblist
+
