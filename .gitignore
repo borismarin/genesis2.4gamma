@@ -37,6 +37,7 @@ src/install-sh
 src/missing
 src/stamp-h1
 src/config.log
+src/config.status
 src/Makefile
 
 # editor mess
