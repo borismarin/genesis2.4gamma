@@ -26,6 +26,7 @@ sufficient to
 - The current version has been verified to compile correctly only with
 _gcc_ on OSX (where default compiler is _clang_). It can be installed
 via 
+
         brew install https://raw.github.com/Homebrew/homebrew-versions/gcc48.rb
 
 - You will need X11 in order to compile Xodus (otherwise,
@@ -33,6 +34,7 @@ you can always ```make nxgenesis```). You can get it from
 [XQuartz](http://xquartz.macosforge.org/landing/).
 
 - _Flex_ and _Bison_ are required, and can be installed via
+
         brew install flex bison
    
 
