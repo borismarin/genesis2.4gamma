@@ -357,7 +357,7 @@ nxinstall: makedirs
 mininstall: makedirs
 	@make -f $(MF) MF="$(MF)" INSTALLDIR="$(INSTALLDIR)" INSTALLBIN="$(INSTALLBIN)" SPRNG_LIB="$(SPRNG_LIB)" MINSUBDIR="$(MINSUBDIR)" RANLIB="$(RANLIB)" mininstall
 
-VERSNAME="genesis-2.3"
+VERSNAME="genesis-2.4"
 bindist: genesis nxgenesis
 	make INSTALLDIR="`pwd`/../distributions/$(VERSNAME)/genesis" install
 	cp nxgenesis "../distributions/$(VERSNAME)/genesis"
