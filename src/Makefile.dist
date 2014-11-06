@@ -974,7 +974,7 @@ SPRNGLIB   = $(SPRNGDIR)/lib/lib$(SPRNG_LIB).a
 ## cause problems if the compiler is aware of the actual location of
 ## the needed X libraries and include files.
 
-# MACHINE=MacOSXDarwin
+# MACHINE=Darwin
 # OS=BSD
 
 ## Older versions may use /usr/X11R6
@@ -983,7 +983,7 @@ SPRNGLIB   = $(SPRNGDIR)/lib/lib$(SPRNG_LIB).a
 
 # CC=cc
 # CPP=cpp -P 
-# CFLAGS=-O2 -D__NO_MATH_INLINES -DBIGENDIAN
+# CFLAGS=-O2 -D__NO_MATH_INLINES
 
 # LD=ld
 # LDFLAGS=
@@ -1716,6 +1716,9 @@ TestSuite:
 # Made TMPDIR setting more prominent.
 #
 # Updated instructions for making genesis.
+#
+# Revision 1.12  2014/11/06 20:00:00 janpi
+# Changed MACHINE from MacOSXDarwin to Darwin for OSX target
 #
 # Revision 1.11  2005/07/19 21:53:02  svitak
 # Some comment changes for Darwin and some encouragement to NOT use
