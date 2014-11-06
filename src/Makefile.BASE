@@ -1,7 +1,15 @@
 # Linux/BSD/Darwin defs, extracted from platform specific Makefiles
 LLIBS		=	$(LIBS) $(EXTRALIBS)
-CFLAGS		=	$(CFLAGS_IN)
-RNG_CFLAGS = -O3 -DLittleEndian -D$(MACHINE)
+CFLAGS	=	$(CFLAGS_IN)
+RNG_CFLAGS = -O3 -D$(MACHINE) # -DLittleEndian has no effect
+
+# PowerPC needs special bigendian treatment in sprng
+ifeq ($(ARCH),"powerpc")
+  RNG_CFLAGS += -DBIGENDIAN
+endif
+ifeq ($(ARCH), ppc64)
+  RNG_CFLAGS += -DBIGENDIAN
+endif
 
 #original Makefile.BASE
 
