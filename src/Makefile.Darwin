@@ -1,4 +1,4 @@
-# $Id: Makefile.MacOSXDarwin,v 1.2 2005/07/29 15:47:11 svitak Exp $
+# $Id: Makefile.Darwin,v 1.3 2014/11/06 20:00:00 janpi Exp $
 #
 # GENESIS/XODUS : network simulator
 #
@@ -8,7 +8,10 @@
 # YOU MUST NOT EDIT THIS MAKEFILE TO CONFIGURE GENESIS!
 # All configuration is in the file Makefile.
 #
-# $Log: Makefile.MacOSXDarwin,v $
+# $Log: Makefile.Darwin,v $
+# Revision 1.3  2014/11/06 20:00:00  janpi
+# Removed BIGENDIAN flag from PPC times; endianness detection now
+# handled in Makefile.BASE
 # Revision 1.2  2005/07/29 15:47:11  svitak
 # Relocated common targets to Makefile.BASE. Some architectures were making
 # in sys and shell, then all the subdirs. If you find this needs to be done
@@ -36,13 +39,13 @@
 #
 #
 
-LLIBS           =       $(LIBS) $(EXTRALIBS)
-CFLAGS		=	$(CFLAGS_IN)
+LLIBS  = $(LIBS) $(EXTRALIBS)
+CFLAGS = $(CFLAGS_IN)
 
 ##
 ## sprng may need different flags in order to compile.
 ## In general, it can be optimized at a higher level than genesis code.
 ##
-RNG_CFLAGS = -O3 -DBIGENDIAN -D$(MACHINE)
+RNG_CFLAGS = -O3 -D$(MACHINE)
 
 include Makefile.BASE

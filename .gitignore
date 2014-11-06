@@ -1,0 +1,79 @@
+.svn
+
+# Apple cruft
+.DS_Store
+._*
+
+# temporary/swap files (VIM etc.)
+*~
+*.sw[op]
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.[gp]ch
+
+# Libraries
+*.lib
+*.a
+*.l[ao]
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i?86
+*.x86_64
+*.hex
+
+# Autoconf/Automake
+*autom4te.cache
+src/aclocal.m4
+src/compile
+src/depcomp
+src/install-sh
+src/missing
+src/stamp-h1
+src/config.log
+src/config.status
+src/Makefile
+
+# genesis mess
+*@.[chg]
+src/liblist
+src/files
+src/loadlib.c
+src/convert/lex.yy.c
+src/convert/y.*
+
+# netcdf temporary files
+src/diskio/interface/netcdf/netcdflib
+src/diskio/interface/netcdf/netcdf-3.4/src/libsrc/ncconfig.h
+src/diskio/interface/netcdf/netcdf-3.4/src/libsrc/ncx.c
+src/diskio/interface/netcdf/netcdf-3.4/src/libsrc/putget.c
+src/diskio/interface/netcdf/netcdf-3.4/src/config.*
+src/diskio/interface/netcdf/netcdf-3.4/src/macros.make
+
+# specific binaries
+src/genesis
+src/sys/code_g
+src/sys/code_func
+src/sys/code_lib
+src/sys/code_sym
+src/sprng/checksprng
+src/sprng/timelfg
+src/sprng/timesprng
+src/sprng/*.clfg
+src/convert/convert
+src/diskio/interface/netcdf/netcdf-3.4/src/ncdump/ncdump
+src/diskio/interface/netcdf/netcdf-3.4/src/ncgen/ncgen
