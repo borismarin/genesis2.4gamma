@@ -4,15 +4,11 @@ CFLAGS	=	$(CFLAGS_IN)
 RNG_CFLAGS = -O3 -D$(MACHINE) # -DLittleEndian has no effect
 
 # PowerPC needs special bigendian treatment in sprng
-# TODO:
-# - autoconf provides WORD_BIGENDIAN via AC_C_BIGENDIAN
 ifeq ($(ARCH),"powerpc")
   RNG_CFLAGS += -DBIGENDIAN
-  CFLAGS += -DBIGENDIAN
 endif
 ifeq ($(ARCH), ppc64)
   RNG_CFLAGS += -DBIGENDIAN
-  CFLAGS += -DBIGENDIAN
 endif
 
 #original Makefile.BASE
