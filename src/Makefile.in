@@ -24,11 +24,19 @@ YACC=@YACC@
 LEX=@LEX@
 
 LEXLIB=@LEXLIB@
-LIBS=$(LEXLIB) -lm @X_PRE_LIBS@
+LIBS=$(LEXLIB) -lm
 XINCLUDE=-I@X_INC@
 ifneq (@X_LIB@,)
 	XLINKPATH=-L@X_LIB@
 endif
+
+# X11's ICE, SM libraries break netcdf on OSX
+# (needed for backward compatibility?)
+XPRELIBS=@X_PRE_LIBS@
+ifneq ($(MACHINE), Darwin)
+	LIBS += $(XPRELIBS)
+endif
+
 
 # TODO:
 # - confirm TERMCAP & TERMOPTS for other platforms
@@ -99,11 +107,11 @@ DISKIOFLAGS  = $(NETCDFFLAGS) \
 # more information.  NOTE: *only* uncomment the netCDF definitions below
 # if diskio support is included above.
 
-#NETCDFSUBDIR = netcdf
-#NETCDFOBJ = \
-#	$(DISKIODIR)/interface/$(NETCDFSUBDIR)/netcdflib.o \
-#	$(DISKIODIR)/interface/$(NETCDFSUBDIR)/netcdf-3.4/src/libsrc/libnetcdf.a
-#NETCDFFLAGS = -Dnetcdf
+NETCDFSUBDIR = netcdf
+NETCDFOBJ = \
+	$(DISKIODIR)/interface/$(NETCDFSUBDIR)/netcdflib.o \
+	$(DISKIODIR)/interface/$(NETCDFSUBDIR)/netcdf-3.4/src/libsrc/libnetcdf.a
+NETCDFFLAGS = -Dnetcdf
 
 #
 # oldconn --- GENESIS 1.4 network connection compatibility library
