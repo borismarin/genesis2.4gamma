@@ -1,0 +1,14 @@
+# TODO: Makefile.in
+# - detect & set matching OS based on build system
+#   (c.f. old GENESIS Makefiles)
+# - introduce PLATFORM=`uname -s` to replace MACHINE keyword
+#   in all following files;
+#   re-use MACHINE=`uname -m` to determine endianness in some
+#   cases where `uname -p` isn't working
+#
+# - confirm TERMCAP & TERMOPTS for other platforms
+#   -> create autoconf rule for that
+#
+# - autoconf provides WORDS_BIGENDIAN via AC_C_BIGENDIAN
+#   -> change throughout sprng & in Xodus/Widg/xgifload.c
+
