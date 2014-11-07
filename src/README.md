@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/borismarin/genesis2.4gamma.svg)](https://travis-ci.org/borismarin/genesis2.4gamma)
+
 GENESIS Version 2.4
 ===================
 
