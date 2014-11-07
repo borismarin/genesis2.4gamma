@@ -11,4 +11,4 @@ install:
   - cp startup/travis_simrc $HOME/.simrc
 
 script:
-  - ./nxgenesis -batch -notty ../.test/version.g 
+  - ./nxgenesis -batch -notty ../.test/test_rng.g | grep '0.01426654216 0.7493918538 0.007316101808 0.1527428776 0.1134621128'
