@@ -1,8 +1,17 @@
 AC_INIT(genesis, version-2.4g)
 
+# If the user did not supply --prefix, we fail loudly
+# (taken from NEST's configure.ac)
+if test $prefix = NONE; then
+  echo "Please supply a valid installation prefix!"
+  echo "Example: ./configure --prefix=\$HOME/opt"
+  exit 1
+fi
+
+# check for correct compiler & libraries
 AC_PROG_CC
 AC_PROG_CPP
-AC_PATH_X 
+AC_PATH_X
 AC_PATH_XTRA
 AC_PROG_RANLIB
 AC_PROG_YACC
@@ -12,7 +21,6 @@ if test x"$YACC" = "xyacc"; then
     AC_MSG_ERROR([[bison|byacc|yacc not found. Please install _bison_ in order to compile Genesis.]])
   fi
 fi
-
 AC_PROG_LEX
 if test x"$LEX" == x":" ; then
     AC_MSG_ERROR([flex|lex not found. Please install _flex_ in order to compile Genesis.])
@@ -26,8 +34,8 @@ AC_SUBST(X_LIB, $x_libraries)
 AC_SUBST(LEX, $LEX)
 AC_SUBST(LEXLIB, $LEXLIB)
 
-AC_CHECK_SIZEOF([long int]) 
-AS_IF([test "$ac_cv_sizeof_long_int" -eq 8], 
+AC_CHECK_SIZEOF([long int])
+AS_IF([test "$ac_cv_sizeof_long_int" -eq 8],
     [AC_DEFINE([LONGWORDS])])
 
 AC_OUTPUT(Makefile)

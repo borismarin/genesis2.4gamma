@@ -6,7 +6,7 @@ compiler:
 
 install:
   - cd src
-  - ./configure
+  - ./configure --prefix=.
   - make nxgenesis
   - cp startup/travis_simrc $HOME/.simrc
 
