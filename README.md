@@ -1,18 +1,8 @@
 [![Build Status](https://travis-ci.org/borismarin/genesis2.4gamma.svg)](https://travis-ci.org/borismarin/genesis2.4gamma)
 
-# Genesis Neuronal simulator, version 2.4gamma
+# Genesis Neuronal simulator, version 2.4
 
-Sources for the  _Genesis_ simulator, version 2.4beta + OSB modifications.
-
-
-
-This _gamma_ version is based on @dbeeman 's [beta
-version](https://github.com/dbeeman/genesis-2.4beta-files), but
-slightly tuned to be conveniently used within the [OSB Model
-Validation](https://github.com/OpenSourceBrain/osb-model-validation) framework.
-
-There are no changes to the core simulator code, only to installation
-scripts in order to automatize building.
+Sources for the  [_Genesis_ neural simulator](http://www.genesis-sim.org/), version 2.4.
 
 # Installation intructions
 
