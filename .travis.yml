@@ -8,7 +8,7 @@ install:
   - cd src
   - ./configure
   - make nxgenesis
-  - cp startup/travis_simrc $TRAVIS_BUILD_DIR/.simrc
+  - cp startup/travis_simrc $HOME/.simrc
 
 script:
   - ./nxgenesis -batch -notty ../.test/version.g 
