@@ -1,0 +1,13 @@
+language: c
+
+compiler:
+  - clang
+  - gcc
+
+install:
+  - cd src
+  - ./configure
+  - make nxgenesis
+
+script:
+  - ./nxgenesis -batch -notty ../.test/version.g 
