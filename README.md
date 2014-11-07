@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/borismarin/genesis2.4gamma.svg)](https://travis-ci.org/borismarin/genesis2.4gamma)
+
 # Genesis Neuronal simulator, version 2.4gamma
 
 Sources for the  _Genesis_ simulator, version 2.4beta + OSB modifications.
