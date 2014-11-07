@@ -12,10 +12,7 @@ Ye olde _configure_, _make_...
 - ```./configure``` or ```./configure --prefix=<install_path>```
 - ```make```
 
-This procedure has been verified to work on recent x86_64 Linuces, as
-well as OSX Mavericks **with _gcc_** (which can be installed via
-[homebrew](https://github.com/Homebrew/homebrew-versions))
-
+This procedure has been verified to work on recent x86_64 Linuces and Mac OSX > 10.8
 
 
 # Original README file
