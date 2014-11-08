@@ -4,6 +4,8 @@
 #		    The General Neural Simulation System
 #				 Version 2.4
 #
+VERSION = 2.4
+#
 # SYNOPSIS: This is the top-level Makefile for GENESIS.  
 #           YOU MUST EDIT THIS FILE BEFORE RUNNING "make".
 #           Please follow the procedure given below.
@@ -65,9 +67,15 @@
 # ----------------------------------------------------------------------
 
 # The following variable determines where GENESIS is placed by the
-# "make install" command. Substituting the full path here is preferable
-# to using `pwd`.
-INSTALLDIR	=	`pwd`/..
+# "make install" command. It can be changed by the user by calling
+# INSTALLDIR=<path> make install
+# Supplying PREFIX=<path> make install will install genesis to the
+# directory "<path>/genesis-2.4"
+ifdef $(PREFIX)
+  INSTALLDIR = $(PREFIX)/genesis-$(VERSION)
+else
+  INSTALLDIR ?= `pwd`/..
+endif
 
 # If /tmp is not big enough to contain compile-produced object files,
 # choose a different location here.
@@ -1557,7 +1565,7 @@ nxinstall: makedirs
 mininstall: makedirs
 	@make -f $(MF) MF="$(MF)" INSTALLDIR="$(INSTALLDIR)" INSTALLBIN="$(INSTALLBIN)" SPRNG_LIB="$(SPRNG_LIB)" MINSUBDIR="$(MINSUBDIR)" RANLIB="$(RANLIB)" mininstall
 
-VERSNAME="genesis-2.4"
+VERSNAME="genesis-$(VERSION)"
 bindist: genesis nxgenesis
 	make INSTALLDIR="`pwd`/../distributions/$(VERSNAME)/genesis" install
 	cp nxgenesis "../distributions/$(VERSNAME)/genesis"

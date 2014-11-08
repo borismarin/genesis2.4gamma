@@ -1,4 +1,5 @@
-AC_INIT(genesis, version-2.4g)
+AC_PREREQ(2.52)
+AC_INIT([genesis], [2.4], [genesis@genesis-sim.org])
 
 # If the user did not supply --prefix, we fail loudly
 # (taken from NEST's configure.ac)
