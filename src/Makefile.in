@@ -7,10 +7,6 @@ OS=BSD
 # TODO:
 # - detect & set appropriate OS based on build system
 #   (c.f. old GENESIS Makefiles)
-# - introduce PLATFORM=`uname -s` to replace MACHINE keyword
-#   in all following files;
-#   re-use MACHINE=`uname -m` to determine endianness in some
-#   cases where `uname -p` isn't working
 
 CC=@CC@
 CPP=@CPP@ -P
@@ -73,6 +69,13 @@ TMPDIR = /tmp
 KINETICSLIB = kin
 KINETICSDIR = kinetics
 KINETICSOBJ = $(KINETICSDIR)/kinlib.o
+
+#
+# chemesis - chemesis modeling library
+#
+CHEMESISLIB = chem
+CHEMESISDIR = chemesis
+CHEMESISOBJ = $(CHEMESISDIR)/chemlib.o
 
 #
 # diskio --- Binary file format support library
@@ -202,6 +205,7 @@ OBJLIBS =	buffer/buflib.o \
 		$(OLDCONNOBJ) \
 		$(DISKIOOBJ) \
 		$(KINETICSOBJ) \
+		$(CHEMESISOBJ) \
 		newconn/newconnlib.o
 
 XODUS 	=	$(XODUSLIB)/_xo/xolib.o \
@@ -213,15 +217,15 @@ XODUS 	=	$(XODUSLIB)/_xo/xolib.o \
 
 EXTRALIBS =  	$(SPRNGLIB) $(TERMCAP)
 
-SUBDIR =        sys ss sim $(SPRNGDIR) shell newconn $(OLDCONNDIR) \
-		buffer concen device hh hines olf out segment \
-                tools user param pore convert $(DISKIODIR) \
-                $(KINETICSDIR) Xodus par
+SUBDIR = sys ss sim $(SPRNGDIR) shell newconn $(OLDCONNDIR) \
+         buffer concen device hh hines olf out segment \
+         tools user param pore convert $(DISKIODIR) \
+         $(KINETICSDIR) $(CHEMESISDIR) Xodus par
 
-NXSUBDIR =	sys ss shell sim $(SPRNGDIR) newconn oldconn \
-		buffer concen device hh hines olf out segment \
-                tools user param pore convert $(DISKIODIR) \
-		$(KINETICSDIR) par
+NXSUBDIR = sys ss shell sim $(SPRNGDIR) newconn oldconn \
+           buffer concen device hh hines olf out segment \
+           tools user param pore convert $(DISKIODIR) \
+           $(KINETICSDIR) $(CHEMESISDIR) par
 
 MINSUBDIR =	sys ss shell sim $(SPRNGDIR) par
 
@@ -243,7 +247,8 @@ LIBLIST =	output \
 		newconn \
 		$(DISKIOLIB) \
 		$(OLDCONNLIB) \
-		$(KINETICSLIB)
+		$(KINETICSLIB) \
+		$(CHEMESISLIB)
 
 NXLIBLIST = 	output \
 		hh \
@@ -260,7 +265,8 @@ NXLIBLIST = 	output \
 		newconn \
 		$(DISKIOLIB) \
 		$(OLDCONNLIB) \
-		$(KINETICSLIB)
+		$(KINETICSLIB) \
+		$(CHEMESISLIB)
 
 #
 # all is now the default target
@@ -393,7 +399,7 @@ bindist: genesis nxgenesis
 # make separate source dists for genesis and pgenesis.
 # cvs export must be used so that empty directories are pruned.
 #
-srcdist: 
+srcdist:
 	-@mkdir -p ../distributions
 	(CVSROOT=$(USER)@cvs.sf.net:/cvsroot/genesis-sim; \
 	CVS_RSH=ssh; \
