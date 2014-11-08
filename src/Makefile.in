@@ -16,7 +16,7 @@ CC=@CC@
 CPP=@CPP@ -P
 LD=ld
 
-CFLAGS+=-D__NO_MATH_INLINES
+CFLAGS += -O2 -D__NO_MATH_INLINES
 
 RANLIB=@RANLIB@
 AR=ar
@@ -31,11 +31,11 @@ ifneq (@X_LIB@,)
 endif
 
 # X11's ICE, SM libraries break netcdf on OSX
-# (needed for backward compatibility?)
+# (uncomment if needed for backward compatibility)
 XPRELIBS=@X_PRE_LIBS@
-ifneq ($(MACHINE), Darwin)
-	LIBS += $(XPRELIBS)
-endif
+#ifneq ($(MACHINE), Darwin)
+#	LIBS += $(XPRELIBS)
+#endif
 
 
 # TODO:
