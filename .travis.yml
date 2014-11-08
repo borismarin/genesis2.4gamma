@@ -6,7 +6,7 @@ compiler:
 
 install:
   - cd src
-  - ./configure
+  - ./configure --prefix=`pwd`
   - make nxgenesis
   - cp startup/travis_simrc $HOME/.simrc
 

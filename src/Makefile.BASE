@@ -10,7 +10,9 @@ RNG_CFLAGS ?= -O3 -D$(MACHINE) # -DLittleEndian has no effect
 ifeq ($(ARCH), powerpc)
   RNG_CFLAGS += -DBIGENDIAN
   CFLAGS += -DBIGENDIAN
-  LIBS += $(XPRELIBS)    # X11 backwards compatibility on 10.3.9
+  ifeq ($(MACHINE), Darwin)
+    LIBS += -lSM -lICE    # X11 backwards compatibility on 10.3.9
+  endif
 endif
 ifeq ($(ARCH), ppc64)
   RNG_CFLAGS += -DBIGENDIAN
