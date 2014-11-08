@@ -2213,7 +2213,9 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 # (taken from NEST's configure.ac)
 if test $prefix = NONE; then
   echo "Please supply a valid installation prefix!"
-  echo "Example: ./configure --prefix=\$HOME/opt"
+  echo "GENESIS will then be installed into \$PREFIX/genesis-2.4"
+  echo "Example: to install GENESIS into \$HOME/opt/genesis-2.4, run the following:"
+  echo "./configure --prefix=\$HOME/opt"
   exit 1
 fi
 
