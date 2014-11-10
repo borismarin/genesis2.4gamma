@@ -7,7 +7,6 @@
 #
 
 SHELL           =       /bin/sh
-CC              =       $(CC)
 CFLAGS 		= 	$(COPT) -D$(OS) -D$(MACHINE) $(DEC_HACK)
 
 INSTALL_DIR	= 	$(INSTALLDIR)
