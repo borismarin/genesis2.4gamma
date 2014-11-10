@@ -1,15 +1,17 @@
 AC_PREREQ(2.52)
 AC_INIT([genesis], [2.4], [genesis@genesis-sim.org])
 
+AC_PREFIX_DEFAULT(/usr/local/$PACKAGE_NAME)
+
 # If the user did not supply --prefix, we fail loudly
-# (taken from NEST's configure.ac)
+# (modified from NEST's configure.ac)
 if test $prefix = NONE; then
-  echo "Please supply a valid installation prefix!"
-  echo "GENESIS will then be installed into \$PREFIX/genesis-2.4"
-  echo "Example: to install GENESIS into \$HOME/opt/genesis-2.4, run the following:"
-  echo "./configure --prefix=\$HOME/opt"
-  exit 1
+  echo "No valid installation prefix supplied! Defaulting to $ac_default_prefix."
+  echo "To install into a custom path, you need to run ./configure --prefix=<path>"
+  echo "Example: to install $PACKAGE_NAME into ~/opt/$PACKAGE_NAME-$PACKAGE_VERSION, run the following:"
+  echo "\t./configure --prefix=\$HOME/opt/$PACKAGE_NAME-$PACKAGE_VERSION"
 fi
+
 
 # check for correct compiler & libraries
 AC_PROG_CC
