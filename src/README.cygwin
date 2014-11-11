@@ -2,13 +2,32 @@ README.Cygwin
 
 Cygwin provides a UNIX-like environment for Windows that will let you run
 GENESIS and other UNIX programs that have been compiled to run under Cygwin.
-Go to http://cygwin.com, and look for the "Install Cygwin now" link.  This
-will download a small setup.exe, which will let you choose what to install and
-then download it.  For more information about selecting packages to install,
-use the link for "Help on setup.exe".  For more information on Cygwin, see
-the Cygwin users guide at http://cygwin.com/cygwin-ug-net/
+
+Go to http://cygwin.com, and install it by downloading and running
+setup-x86.exe (32-bit installation). This may be used with 64 bit MS Windows,
+and is recommended over the less stable setup-x86_64.exe.
+
+Running this will let you choose what to install and then download it.
+
+When using Cygwin Setup for the first time, the default is to install
+a minimal subset of all available packages. If you want anything
+beyond that, you will have to select it explicitly.  See
+http://cygwin.com/packages/ for a searchable list of available
+packages, or use cygcheck -p as described in the Cygwin User's Guide
+at http://cygwin.com/cygwin-ug-net/using-utils.html#cygcheck.
+
+If you need to build GENESIS from source, you will need gcc, binutils,
+make and probably other packages from the ``Devel'' category. Text
+editors can be found under ``Editors''. For more information about
+selecting packages to install, and using Cygwin, consult the
+docmentation links at http://cygwin.com.
+
+More information on installing and using X windows with Cygwin can be found
+at http://x.cygwin.com/.
+
 
 RUNNING GENESIS
+
 GENESIS can be run under Windows with the Cygwin software installed. If you want
 to run GENESIS with GUI capabilities, the X windows package must be installed
 under Cygwin. The instructions below assume you want GUI capabilities. You

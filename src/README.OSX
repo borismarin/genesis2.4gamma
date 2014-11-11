@@ -1,38 +1,40 @@
 README.OSX
 
 RUNNING GENESIS
-The __binary__ distribution of GENESIS will only work with OSX 10.2 and higher,
-on the PowerPC architecture.  You'll have to compile the package from source
-to run on earlier versions or on the Intel.
 
-The non-graphical version of GENESIS (nxgenesis) should run on any standard
-OSX installation. Graphical GENESIS (genesis) relies on the X11 libraries for
-it's graphical user interface (GUI). An X11 server needs to be started before
-graphical GENESIS can be run. If you can't locate the X11 application (usually
-Applications->Utilities->X11), see:
-http://developer.apple.com/darwin/runningX11.html
-for further information.
+If a binary distribution of GENESIS for Mac OSX is available, it
+may be unpacked from the  'genesis-2.4-<os>-bin.tar.gz' archive,
+following the intructions in genesis/README.bindist. Otherwise, it may be
+compiled from the instructions in genesis/src/README.txt and in this file.
 
-Starting the X11 application should bring up an 'xterm' window. Graphical
-GENESIS must be started from the xterm window; it will not work from a window
+The non-graphical version of GENESIS (nxgenesis) should run on any
+standard OSX installation. Graphical GENESIS (genesis) relies on the
+X11 libraries for it's graphical user interface (GUI). An X11 server
+needs to be started before graphical GENESIS can be run. If you can't
+locate the X11 application (perhaps in Applications->Utilities->X11),
+see: https://developer.apple.com/opensource/ or the XQuartz project
+(http://xquartz.macosforge.org/landing/).
+
+Starting the X11 application should bring up a console window. Graphical
+GENESIS must be started from the console window; it will not work from a window
 started by the 'Terminal' application.
 
-
 BUILDING GENESIS
-To compile GENESIS under OSX, you will first need a compiler. One may already
-be installed. Check by running 'which cc' from any terminal window. If something
-like '/usr/bin/cc' is returned, continue to the next paragraph. If cc was not
-found, you probably need to install the Xcode development tools. More
-information on installing the Xcode tools as well as some links to basic
-navigation through the underlying Unix layer of OSX can be found at:
-http://www.macworld.com/weblogs/macosxhints/2005/08/installxcode/index.php
-(Please let us know if this link becomes broken)
 
-In order to compile and run GENESIS graphically (i.e., not just from the
-command line), the X11 Software Development Kit (SDK) must be installed.
-If you've followed the instructions from the link above, it should get
-installed. If you already had a compiler and tried compiling GENESIS, but got
-lots of errors about "X11/somefile.h not found", then the X11 SDK is probably
-not installed.  The X11 SDK will be available on your OSX installation CD or the
-Xcode image you downloaded from Apple's developer website. For more information,
-see: http://developer.apple.com/darwin/runningX11.html
+To compile GENESIS under OSX, you will first need a compiler. One may
+already be installed. Check by running 'which cc' from any terminal
+window. If something like '/usr/bin/cc' is returned, continue to the
+next paragraph. If cc was not found, you probably need to install the
+development tools. The default compiler on recent Mac OS versions is
+clang, but GNU gcc is a safer choice. GENESIS has been verified to
+compile correctly with gcc-4.8 and 4.9, and clang-600.0.54.  gcc can
+be installed via homebrew (http://brew.sh/):
+
+      brew install https://raw.github.com/Homebrew/homebrew-versions/gcc48.rb
+
+Flex and Bison are required, and can be installed via
+
+      brew install flex bison
+
+Then, you should be able to install GENESIS with "configure", as described
+in genesis/src/README.txt. Otherwise, see the section "Compiling with Mac OS X".

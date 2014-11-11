@@ -948,10 +948,10 @@ SPRNGLIB   = $(SPRNGDIR)/lib/lib$(SPRNG_LIB).a
 # ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~
 
 ## This configuration was originally provided by a GENESIS user,
-## Alfonso Delgado-Reyes.  For this GENESIS 2.4 release, we would
+## Alfonso Delgado-Reyes.  For this GENESIS 2.4 release, Boris Marin
+## and Jan Pieczkowski updated it for Mac OSX > 10.8. We would
 ## appreciate comments and feedback from other users of recent
-## versions of MacOS , and the upcoming Yosemite release, in
-## particular.  
+## versions of MacOS via the genesis-sim-users mailing list.
 ##
 ## If compilation fails because of errors in netcdf, see the earlier
 ## comments on changing the definitions for the netCDF file format, in
@@ -1131,7 +1131,7 @@ SPRNGLIB   = $(SPRNGDIR)/lib/lib$(SPRNG_LIB).a
 # end	IBM RS6000 running AIX
 
 # ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~
-# System:	Cygwin
+# System:	Cygwin (32 bit version)
 # Compiler:	gcc
 # ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~
 
@@ -1144,10 +1144,11 @@ SPRNGLIB   = $(SPRNGDIR)/lib/lib$(SPRNG_LIB).a
 
 #MACHINE=Cygwin
 
+## This may need to be BSD
 #OS=SYSV
 
-#XINCLUDE=-I/usr/include
-#XLIB=/usr/X11R6/lib
+#XINCLUDE=-I/usr/include/X11
+#XLIB=/usr/lib
 
 #CC=gcc
 #CPP=cpp -P
