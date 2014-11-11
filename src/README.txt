@@ -1,19 +1,20 @@
 GENESIS Version 2.4 README
 Building and Installing GENESIS
-Last edited: $Date: 2014/10/19  20:23:58 $
+Last edited: $Date: 2014/11/10 22:01:19 MST $
 
 CONTENTS
 
-    1  QUICK START
+    1  GETTING STARTED
     2  INTRODUCTION
     3  UNPACKING THE DISTRIBUTION
-    4  BUILDING THE DISTRIBUTION
-        4.1  X11 Development Kit
+    4  PREREQUISITES FOR BUILDING THE DISTRIBUTION
+        4.1  X11 Development Libraries
         4.2  yacc and lex
-        4.3  Required Makefile Modifications
+        4.3  Required Makefile Modifications -- "the old way"
         4.4  Custom Makefile Modifications
         4.5  Compiling
         4.6  Installation
+        4.7 Specifying an Alternate Installation Directory
     5  RUNNING GENESIS
         5.1  Testing the Distribution
         5.2  The GENESIS Neural Modeling Tutorials
@@ -23,32 +24,60 @@ CONTENTS
     8  PROBLEMS RUNNING GENESIS
         8.1  Floating Point Variation
 
-1  QUICK START
+1  GETTING STARTED
 
-    0) tar xzf genesis-2.4-src.tar.gz
-    1) cd genesis-2.4/genesis/src
-    2) cp Makefile.dist Makefile
-    3) Edit Makefile using your favorite TEXT editor:
-        - Change INSTALLDIR to the desired installation location. The default
-          is `pwd`/..
-        - Uncomment the lines for your architecture.
+    GENESIS 2.4 features a new autoconf-based build system, meaning
+    that now a simple "./configure" command will create the Makefile
+    that is appropriate for your system. The old "Makefile.dist" and
+    system-dependent Makefiles are still available to build GENESIS
+    the old way (See Sec. 4.3). This may be necessary in case of
+    problems with operating systems that are not supported by autoconf.
+
+    Pick a place to unpack the distribution, e.g. "/usr/local" or "/opt".
+    If you want a personal installation, rather than system-wide, create
+    a place within your home directory.
+
+    QUICK START
+
+    0) cd /usr/local
+    1) tar xzf genesis-2.4-src.tar.gz
+    2) cd genesis-2.4/genesis/src
+    3) ./configure --prefix=/usr/local/genesis-2.4/genesis
     4) make >& make.out
     5) make install >& install.out
-    6) Add INSTALLDIR to your PATH (export or set).
+    6) Add INSTALLDIR to your PATH (See Sec. 4.6)
     7) genesis
 
     If you'd rather make a version not requiring X11, substitute these steps:
+
     4) make nxgenesis >& nxmake.out
     5) make nxinstall >& nxinstall.out
-    6) Add INSTALLDIR to your PATH (export or set).
+    6) Add INSTALLDIR to your PATH (See Sec. 4.6)
     7) nxgenesis
 
-    If it didn't work, you'll have to read on...
+    If it didn't work, you'll have to read on ...
     
     In particular, see Section 4.5 on directing error messages to a
     file, and Section 7. Mac users, be sure to read Section 7.1.
-    For this GENESIS 2.4 release, we would like to hear your
-    experiences compiling GENESIS with XODUS.
+
+    Some Further Details:
+
+    The GNU autconf utility assumes a default installation directory
+    (INSTALLDIR) of /usr/local/genesis if a simple "./configure" is used.
+
+    Whether or not you install the package in /usr/local, or in your home
+    directory, it is best to have "genesis" lie below "genesis-2.4".
+    This will make it possible to install parallel GENESIS (PGENESIS) as
+    a sibling directory "genesis-2.4/pgenesis". This is required for the
+    installation of PGENESIS.
+
+    The recommended way to create the Makefile is with:
+
+       ./configure --prefix=/usr/local/genesis-2.4/genesis
+
+    Alternatively, to put it a "bin" directory of your own:
+
+       ./configure --prefix=$HOME/bin/genesis-2.4/genesis
 
 2  INTRODUCTION
 
@@ -58,15 +87,16 @@ CONTENTS
     GENESIS is known to compile on a wide range of Unix-based operating systems
     including SunOs and Sun Solaris, FreeBSD, OpenBSD, SGI Irix, HPUX, IBM SP2
     AIX, a gamut of Linuxes, Mac OSX and Windows with Cygwin.  We welcome
-    feedback on experiences with these and other platforms.
+    feedback on experiences with these and other platforms. Most recently,
+    version 2.4 has been successfully tested under Linux, Mac OS, and Cygwin.
 
 
-3  UNPACKING THE DISTRIBUTION
+3  UNPACKING AND INSTALLING THE DISTRIBUTION
 
     The GENESIS distribution may be installed in whatever directory is most
     convenient.  The distributed compressed tar file unpacks to produce the
     directory named "genesis-2.4" and its subdirectories. This is a slight
-    departure from previous releases which always unpacked to a directory
+    departure from early releases which always unpacked to a directory
     named genesis. The new structure accommodates parallel genesis and
     facilitates users running multiple versions.
 
@@ -78,36 +108,31 @@ CONTENTS
     to the installation directory.  Thus, the file you are reading is
     src/README.
 
-
-4  BUILDING THE DISTRIBUTION
+4  PREREQUISITES FOR BUILDING THE DISTRIBUTION
 
     This section describes some prerequisites to building as well as the
     actual build process.
 
-4.1  X11 Development Kit
+4.1  X11 Development Libraries
 
     X11 development files are needed if you intend to compile the graphical
-    version of GENESIS. The location of the X11 files varies widely among
+    version of GENESIS. The location of the X11 files varies among
     different operating systems so there's no standard way to determine if
     they are installed. You can try 'locate Xlib.h' at a command prompt or
     look in src/Makefile.dist for comments relevant to your operating
     system.
 
-    You must have X11R5, X11R6, or X.org in order to successfully compile and
-    run graphical GENESIS. The runtime files associated with this software
-    package will be installed on most workstations, but the development files
-    may not be. If you have determined that these files are not installed on
-    your system, install them from the original installation media; look for
-    'X11 SDK', or some variation on 'X11 development'.
+    You must have the X Window System X.org (or X11R5, X11R6) in order
+    to successfully compile and run graphical GENESIS. The runtime
+    files associated with this software package will be installed on
+    most computers, but the development files may not be. If you
+    have determined that these files are not installed on your system,
+    install them from the original installation media; look for
+    some variation on 'X11 development'. Check the web site for your
+    OS or use your package manager to download them.
 
-    For various reasons you might not want, or be able, to install X11 from
-    your original installation media. Check the internet (especially the web
-    site for your OS) for binary distributions created specifically for your
-    operating system version. If you can't find one, you'll have to download
-    from either XFree86.org or X.org. XFree86 may have a binary distribution
-    which will work for you, but remember to get 'Xprog.tgz'. X.org only
-    distributes source code though you may be able to find a binary compiled
-    by someone else for your OS.
+    In general, it is best to install most of the C software development
+    libraries that are available for your system.
 	
 4.2  yacc and lex
 
@@ -115,17 +140,18 @@ CONTENTS
     script language of GENESIS. If GENESIS does not compile properly due to
     problems with the code generated by yacc or lex, or your system does not
     have yacc (or bison) or lex (or flex), your best bet is to obtain
-    the GNU versions of these programs (bison and flex) from the anonymous
-    FTP site at ftp.gnu.org as well as other locations.  On ftp.gnu.org,
-    the current releases of bison and flex are in the /pub/gnu directory.
+    the GNU versions of these programs (bison and flex).
 
-4.3  Required Makefile Modifications
+4.3  Required Makefile Modifications -- "The old way"
 
-    Make a copy of src/Makefile.dist to src/Makefile and edit src/Makefile
-    to uncomment the appropriate Makefile variables for your system.  Do
-    NOT edit the files called 'Makefile.machine-name' or rename them to
-    Makefile.  It is critical that parameters be set correctly for a clean
-    compilation and installation to occur.
+    If for some reason you are not able to create a Makefile by the
+    method described in Section 1, you may create it by using
+    Makefile.dist as a template. Make a copy of src/Makefile.dist to
+    src/Makefile and edit src/Makefile to uncomment the appropriate
+    Makefile variables for your system.  Do NOT edit the files called
+    'Makefile.machine-name' or rename them to Makefile.  It is
+    critical that parameters be set correctly for a clean compilation
+    and installation to occur.
 
     Instructions about what must be modified in src/Makefile are included at
     the beginning of the file.
@@ -165,18 +191,20 @@ CONTENTS
         make > make.out 2>&1 &
         (or for csh: make > & ! make.out &)
 
-    This will take up to 30 minutes depending on machine type, but probably
-    more like 3 minutes on modern architectures. The compile process can be
-    viewed by typing:
+    This will take a minute or two on modern architectures. The
+    compile process can be viewed by typing:
 
         tail -f make.out     [ hit ^C to exit the tail ]
 
-    After you return from your coffee break, check the end (say, the last 30-50
-    lines) of make.out for any sign of errors. Unfortunately, the GENESIS
-    compilation may display a message indicating a successful build even when
-    it's clearly not.  Again, just check the last 30-50 lines to make sure no
-    errors have been reported. If you suspect an error, please read the
-    'PROBLEMS COMPILING GENESIS' section below.
+    It should end with something like:
+
+        Full GENESIS Compiled -- All Done
+
+    Unfortunately, the GENESIS compilation may display a message
+    indicating a successful build even when it's clearly not. It is
+    best to check the last 30-50 lines of make.out to be sure no
+    errors have been reported. If you suspect an error, please read
+    the 'PROBLEMS COMPILING GENESIS' section below.
 
     If you want to build a version of GENESIS to be run without XODUS
     (nxgenesis), type "make nxall".  To compile a minimum version of
@@ -242,14 +270,26 @@ CONTENTS
     These lines should be added to your .cshrc or .tcshrc file (for
     csh/tcsh) or your .bashrc (for bash) in your home directory.
 
+4.7 Specifying an Alternate Installation Directory
 
+    Whether you created the Makefile by using "./configure" or by editing a
+    copy of Makefile.dist, you may want to install the compiled version of
+    GENESIS and its libraries in a different place than was specified in
+    the Makefile.  This can be changed by editing the Makefile line
+    "INSTALLDIR ?= " to give the full path to where your want it to be.
+
+    Another way is to invoke "make install" with the value of INSTALLDIR,
+
+    as in:
+
+        make install INSTALLDIR=/usr/local/genesis-2.4/genesis
+        
 5  RUNNING GENESIS
 
     You must have an X11 server running in order to run graphical GENESIS. If
     the installation steps were successful, you should just be able to
     type genesis at the command prompt, or nxgenesis for a non-graphical
-    version. If this doesn't work, check for a README for your operating
-    system (e.g., README.OSX) in this directory.
+    version.
 
 5.1  Testing the Distribution
 
@@ -258,18 +298,6 @@ CONTENTS
     directories.  Make sure that you've added the installation
     directory to your path and copied .simrc to your home directory, as
     described above, before running any of the demos.
-
-    To test GENESIS relative to the reference platform (32-bit Linux), you
-    need to download the TestSuite package from the www.genesis-sim.org or
-    www.sourceforge.net/projects/genesis-sim.  After a successful installation,
-    cd to TestSuite and run the validate (or validate_nox, which runs
-    nxgenesis) shell script. The shell scripts look for executables
-    in the default installation directory (one level above the source code
-    directory), so they may need to be modified to point to the executable
-    you want to test.
-
-    You can expect to encounter differences in the priority of jobs,
-    and formats of shell errors (some shells prefix 'csh:', etc).
 
     Also, see the discussion on floating point computation below.
 
@@ -291,12 +319,14 @@ CONTENTS
 
 6  KNOWN PLATFORMS
 
-    See the top-level README for a list of systems on which GENESIS is known
-    to compile and run.  Note that the list is for very specific configurations
-    of software. While GENESIS has been successfully compiled and run on a wide
-    variety of systems, different versions of an operating system, compiler,
-    linker, or other auxiliary program may cause problems. Read on for some
-    known problems and solutions.
+    See the top-level README for a list of systems on which GENESIS is
+    known to compile and run.  Note that the list is for very specific
+    configurations of software. In general, you should expect no
+    problems on recent versions of Limux and Mac OSX > 10.8.  While
+    GENESIS has been successfully compiled and run on a wide variety
+    of systems, different versions of an operating system, compiler,
+    linker, or other auxiliary program may cause problems. Read on for
+    some known problems and solutions.
 
 
 7  PROBLEMS COMPILING GENESIS
@@ -397,19 +427,25 @@ http://sourceforge.net/tracker/?func=add&group_id=141069&atid=748364.
 
 7.1 Compiling with Mac OS X
 
-    For this GENESIS 2.4 release, we would appreciate comments and feedback
-    from other users of recent versions of Mac OS X, and the upcoming Yosemite
-    release, in particular.
+    The current GENESIS 2.4 version has been verified to compile correctly only
+    with gcc-4.8 on OSX (where the default compiler is clang). gcc can be
+    installed via homebrew:
 
-    If compilation fails because of errors in netcdf, see the earlier comments
-    on changing the definitions for the netCDF file format, in order to
-    disable it. Recent changes to the src/diskio library have likely solved
-    this problem.
+      brew install https://raw.github.com/Homebrew/homebrew-versions/gcc48.rb
+
+    You will need X11 in order to compile Xodus (otherwise, you can
+    always make nxgenesis). You can get it from XQuartz:
+
+      http://xquartz.macosforge.org/landing/
+
+    Flex and Bison are required, and can be installed via
+
+      brew install flex bison
 
     For most Mac users, the biggest problem will be installing the necessary X
-    window system libraries, and locating where they are installed in order to
-    properly set the Makefile definitions in the section "Mac OS X and Darwin
-    (PPC and Intel x86 based systems)".
+    window system libraries, and locating where they are installed, in case
+    "configure" cannot locate them. Future versions of Mac OS may provide X11
+    without the need to install via Quartz.
 
     It is recommended that you first try "make nxgenesis" to see if there are
     any problems other than with the installation of XODUS.  XODUS makes use
@@ -418,15 +454,14 @@ http://sourceforge.net/tracker/?func=add&group_id=141069&atid=748364.
     involving the failure to find header files for Xlib.h and Intrinsic.h,
     which are expected to be in /usr/X11/include/.
 
-    Support for the X.org version of the X11 libraries is often found within
-    the 'Xcode' developer toolset provided by Apple. On newer Macs, there will
-    be a menu within Xcode for installing development packages.  Another
-    option is to visit the web site htp://xquartz.macosforge.org/landing/ for
-    a version of the X.Org X Window System that runs on OS X.
-
     The paths shown for XLIB and XINCLUDE in Makefile.dist may not be valid, but
     might not cause problems if the compiler is aware of the actual location of
     the needed X libraries and include files.
+
+    If compilation fails because of errors in netcdf, see the earlier comments
+    on changing the definitions for the netCDF file format, in order to
+    disable it. Recent changes to the src/diskio library have likely solved
+    this problem.
 
 8  PROBLEMS RUNNING GENESIS
 
