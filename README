@@ -1,11 +1,10 @@
 
 ::
 
-			       G E N E S I S
-
+                           G E N E S I S
 		   The GEneral NEural Simulation System
-			     Version 2.4
-           Last edited: $Date:Fri Oct 17 15:49:46 MDT 2014 $
+                              Version 2.4
+           Last edited: $Date: Tue Nov 11 13:00:14 MST 2014 $
 
 Introduction
 ------------
@@ -53,9 +52,10 @@ Obtaining GENESIS
 ------------------
 
 GENESIS source and binary distributions can be obtained from:
-http://sourceforge.net/projects/genesis-sim, and http://genesis-sim.org.
+http://genesis-sim.org, or from the Sourceforge GENESIS 2 development
+site http://sourceforge.net/projects/genesis-sim.
 
-Machine dependence
+Machine dependence  
 ------------------
 
 GENESIS and its graphical front-end XODUS are written in C and are
@@ -64,7 +64,11 @@ known to run under many UNIX-based systems with the X Window System
 recent experiences are with Fedora and Ubuntu. It has also been used
 under various MS Windows virtual environments for running Linux.
 
-Here is a partial list of tested older platforms:
+The current GENESIS 2.4 version has been tested on various recent Linux
+distributions including Debian, Ubuntu, and Fedora, on Mac OSX (intel),
+and Cygwin (32 bit version, which works with 64 bit Windows).
+
+Here is a partial list of older platforms tested for version 2.3:
 
 * x86-based Linux systems:
    + Debian Linux with kernel 2.x
@@ -74,7 +78,7 @@ Here is a partial list of tested older platforms:
    + Red Hat Linux 5, 6, 7, 8, and 9
    + Slackware 10
 * 64 bit Linuces:
-   + Fedora Core 3 and 4
+   + Fedora Core 3 and 4, Fedora 10 - 19.
    + Red Hat Enterprise
 * x86-based FreeBSD 4.1
 * Alpha with Debian 3.0

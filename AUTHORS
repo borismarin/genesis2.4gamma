@@ -60,16 +60,28 @@
 **
 ** Modifications to run under Microsoft Windows with Cygwin by:
 **		Sergio Daicz
+**              Gilles Detillieux
 **
-** Modifications to run on the Apple under Mac OS X
+** Modifications to run on the Apple under Mac OS
 **              Alfonso Delgado-Reyes
 **              Josef Svitak
+**		Jan Pieczkowski
+**		Boris Marin
+**
+** Implementation of hsolvable STDP
+**              Dave Beeman
+**              Hugo Cornelis
+**
+** Addition of autoconf to automate Makefile construction
+**              Jan Pieczkowski
+**              Boris Marin
 **
 ** Script Demos and Tutorials by:
 **              Dave Beeman
 **              Upinder S. Bhalla
 **              Sharon Crook
 **              Erik De Schutter
+**		Hugo Cornelis
 **              Mark E. Nelson
 **              Alex Protopapas
 **              Michael Vanier

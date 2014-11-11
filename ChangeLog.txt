@@ -1,7 +1,7 @@
                              G E N E S I S
                 Summary of changes and revision history
                 ***************************************
-                Last edited: $Date: Sat Oct 18 10:47:19 MDT 2014 $
+                Last edited: $Date: Tue Nov 11 14:05:40 MST 2014 $
 
 Each set of changes listed below is prefaced with the version number for
 which the changes apply.  For development releases, two version numbers
@@ -12,14 +12,16 @@ proposed release is subject to discussion and change.
 
 ------------------------------------------
 FINAL RELEASE 2.4
-2014-October
+2014-November
 ------------------------------------------
 
-- Three new network connection commands, 'volumeconnect3',
-'volumeweight3', and 'volumedelay3', have been added and
-documented. These allow distance-dependent connection
-probabilities and/or weights and the use of periodic boundary
-conditions for network connectivity.
+- A new autoconf-based build system has been incorporated, so that a
+simple "./configure" command will create the appropriate Makefile.
+
+- Three new network connection commands, 'volumeconnect3', 'volumeweight3',
+and 'volumedelay3', have been added and documented. These allow
+distance-dependent connection probabilities and/or weights and the use
+of periodic boundary conditions for network connectivity.
 
 - Added HTML indexing to the 'genesis' directory and subdirectories.
 README files have been replaced or supplemented with '.txt' or '.html' files.
